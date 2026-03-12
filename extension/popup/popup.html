@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LangBridge</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="logo">🌉 LangBridge</span>
+      <span id="status-dot" class="dot dot-stopped"></span>
+    </header>
+
+    <div class="toggle-row">
+      <span class="toggle-label">Translation</span>
+      <label class="switch">
+        <input type="checkbox" id="toggle-translation" />
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="status-row">
+      <span id="status-text">Stopped</span>
+      <span id="latency-badge" class="badge hidden">–</span>
+    </div>
+
+    <div class="lang-row">
+      <label for="target-lang">Output Language</label>
+      <select id="target-lang">
+        <option value="en">🇬🇧 English</option>
+        <option value="hi">🇮🇳 Hindi</option>
+      </select>
+    </div>
+
+    <div class="footer">
+      <a id="settings-link" href="#" class="settings-link">⚙ Settings</a>
+    </div>
+  </div>
+  <script src="popup.js" type="module"></script>
+</body>
+</html>
