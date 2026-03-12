@@ -1,7 +1,7 @@
 import asyncio
 from functools import lru_cache
 
-from googletrans import Translator
+from deep_translator import GoogleTranslator
 
 from services.translation.base import BaseTranslationService
 from utils.logger import get_logger
@@ -12,14 +12,13 @@ logger = get_logger(__name__)
 @lru_cache(maxsize=100)
 def _cached_translate(text: str, source_lang: str, target_lang: str) -> str:
     """Synchronous translation call with LRU cache (maxsize=100)."""
-    translator = Translator()
-    result = translator.translate(text, src=source_lang, dest=target_lang)
-    return result.text
+    translator = GoogleTranslator(source=source_lang, target=target_lang)
+    return translator.translate(text)
 
 
 class GoogleTranslationService(BaseTranslationService):
     """
-    Translation service using googletrans.
+    Translation service using deep-translator (GoogleTranslator).
     Results are cached (LRU, maxsize=100) to avoid redundant API calls.
     """
 
@@ -28,7 +27,7 @@ class GoogleTranslationService(BaseTranslationService):
     ) -> str:
         """
         Translate text asynchronously.
-        Runs the synchronous googletrans call in a thread executor to avoid
+        Runs the synchronous deep-translator call in a thread executor to avoid
         blocking the event loop.
         """
         try:
